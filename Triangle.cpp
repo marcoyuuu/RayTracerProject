@@ -45,7 +45,7 @@ bool Triangle::intersects(const Ray& ray, double& t) const {
     }
 
     // Calcular t para comprobar la distancia al plano de intersección
-    double t = (edge2 * q) * invDet;
+    t = (edge2 * q) * invDet;
 
     if (t > 1e-6) { // Si t es mayor que cero, el rayo intersecta con el triángulo
         return true;

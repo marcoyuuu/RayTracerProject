@@ -15,6 +15,9 @@ public:
 
 private:
     Vector3D a, b, c; // Vértices del triángulo
+    double specular; // Valor especular del material
+    Vector3D color;  // Color del triángulo
+    double reflectivity; // Reflectividad del material
 };
 
 #endif // TRIANGLE_H

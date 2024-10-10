@@ -15,19 +15,24 @@ bool Scene::intersects(const Ray& ray, Vector3D& hitPoint, Vector3D& normal) con
     double closest_t = std::numeric_limits<double>::infinity();
     bool hit = false;
 
+    // Iterar sobre todos los triángulos de la escena
     for (const auto& triangle : triangles) {
-        if (triangle.intersects(ray)) {
-            // Si hay una intersección, actualiza el punto más cercano
-            double t = 1.0; // Aquí debes calcular la distancia exacta
+        double t; // Variable para almacenar la distancia al punto de intersección
+        if (triangle.intersects(ray, t)) {
+            // Si hay una intersección y es la más cercana hasta ahora
             if (t < closest_t) {
                 closest_t = t;
                 hit = true;
-                // Actualiza el punto de intersección y la normal del triángulo
+
+                // Calcular el punto de intersección
                 hitPoint = ray.getOrigin() + ray.getDirection() * t;
+
+                // Obtener la normal del triángulo en el punto de intersección
                 normal = triangle.getNormal();
             }
         }
     }
+
     return hit;
 }
 

@@ -25,9 +25,16 @@ double Vector3D::getZ() const {
     return v[2];
 }
 
+double Vector3D::get(int index) const {
+    if (index < 0 || index > 2) {
+        throw std::out_of_range("Index out of bounds");
+    }
+    return v[index];
+}
+
 // Método para calcular la norma del vector
 double Vector3D::norm() const {
-    return sqrt((*this) * (*this));
+    return sqrt((*this).dot(*this));
 }
 
 // Método para normalizar el vector
@@ -41,15 +48,20 @@ Vector3D Vector3D::normalize() const {
 
 // Método para calcular el ángulo entre dos vectores
 double Vector3D::angle(const Vector3D& other) const {
-    double dotProd = (*this) * other;
+    double dotProd = this->dot(other);
     double norms = this->norm() * other.norm();
     return acos(dotProd / norms);
 }
 
 // Método para proyectar este vector sobre otro
 Vector3D Vector3D::project(const Vector3D& other) const {
-    double scalar = ((*this) * other) / (other * other);
+    double scalar = (this->dot(other)) / (other.dot(other));
     return scalar * other;
+}
+
+// Producto punto entre dos vectores
+double Vector3D::dot(const Vector3D& other) const {
+    return v[0] * other.v[0] + v[1] * other.v[1] + v[2] * other.v[2];
 }
 
 // Sobrecarga del operador +=
@@ -96,7 +108,7 @@ Vector3D operator *(const Vector3D& obj, double scalar) {
 
 // Sobrecarga para el producto punto
 double operator *(const Vector3D& v1, const Vector3D& v2) {
-    return v1.v[0] * v2.v[0] + v1.v[1] * v2.v[1] + v1.v[2] * v2.v[2];
+    return v1.get(0) * v2.get(0) + v1.get(1) * v2.get(1) + v1.get(2) * v2.get(2);
 }
 
 // Sobrecarga para suma escalar
@@ -111,12 +123,12 @@ Vector3D operator -(double scalar, Vector3D obj) {
 
 // Sobrecarga para suma de vectores
 Vector3D operator +(const Vector3D& v1, const Vector3D& v2) {
-    return Vector3D(v1.v[0] + v2.v[0], v1.v[1] + v2.v[1], v1.v[2] + v2.v[2]);
+    return Vector3D(v1.get(0) + v2.get(0), v1.get(1) + v2.get(1), v1.get(2) + v2.get(2));
 }
 
 // Sobrecarga para resta de vectores
 Vector3D operator -(const Vector3D& v1, const Vector3D& v2) {
-    return Vector3D(v1.v[0] - v2.v[0], v1.v[1] - v2.v[1], v1.v[2] - v2.v[2]);
+    return Vector3D(v1.get(0) - v2.get(0), v1.get(1) - v2.get(1), v1.get(2) - v2.get(2));
 }
 
 // Producto cruzado
