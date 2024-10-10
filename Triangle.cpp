@@ -3,8 +3,9 @@
 #include "Ray.h"
 #include <cmath> // Para fabs y otras operaciones matemáticas
 
-// Constructor que inicializa los vértices del triángulo
-Triangle::Triangle(const Vector3D& a, const Vector3D& b, const Vector3D& c) : a(a), b(b), c(c) {}
+// Constructor que inicializa los vértices del triángulo, color, especularidad y reflectividad
+Triangle::Triangle(const Vector3D& a, const Vector3D& b, const Vector3D& c, const Vector3D& color, double specular, double reflectivity)
+    : a(a), b(b), c(c), color(color), specular(specular), reflectivity(reflectivity) {}
 
 // Método para comprobar si un rayo intersecta con el triángulo mediante el algoritmo de intersección de rayos con triángulos de Möller-Trumbore
 bool Triangle::intersects(const Ray& ray, double& t) const {
@@ -22,7 +23,7 @@ bool Triangle::intersects(const Ray& ray, double& t) const {
         return false;
     }
 
-    //  Calculamos el inverso del determinante (det)
+    // Calculamos el inverso del determinante (det)
     double invDet = 1.0 / det;
     // Calculamos el vector s que va desde el origen del rayo (ray.getOrigin()) hasta el vértice a del triángulo
     Vector3D s = ray.getOrigin() - a;

@@ -10,6 +10,11 @@ void Scene::addTriangle(const Triangle& triangle) {
     triangles.push_back(triangle);
 }
 
+// Método para añadir una fuente de luz a la escena
+void Scene::addLight(const LightSource& light) {
+    lights.push_back(light);
+}
+
 // Método para comprobar si un rayo intersecta con algún objeto en la escena
 bool Scene::intersects(const Ray& ray, Vector3D& hitPoint, Vector3D& normal) const {
     double closest_t = std::numeric_limits<double>::infinity();

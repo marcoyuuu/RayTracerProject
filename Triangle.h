@@ -6,7 +6,9 @@
 
 class Triangle {
 public:
-    Triangle(const Vector3D& a, const Vector3D& b, const Vector3D& c); // Constructor que inicializa los vértices del triángulo
+    // Constructor que inicializa los vértices, color, especularidad y reflectividad
+    Triangle(const Vector3D& a, const Vector3D& b, const Vector3D& c, const Vector3D& color, double specular, double reflectivity);
+
     bool intersects(const Ray& ray, double& t) const; // Método para comprobar si un rayo intersecta con el triángulo
     Vector3D getNormal() const; // Método para obtener la normal del triángulo
     double getSpecular() const; // Devuelve el valor de especularidad del material
