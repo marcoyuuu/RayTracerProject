@@ -67,6 +67,14 @@ Esto creará un archivo llamado `output.ppm` que contiene la imagen generada.
 ## Visualización de la Imagen
 La imagen se genera en formato **PPM**. Puedes abrir este tipo de archivo con programas como **GIMP**, **Photoshop**, o incluso algunos visores de imágenes online.
 
+## Visualización de la Imagen
+
+La imagen se genera en formato **PPM**. Puedes abrir este tipo de archivo con programas como **GIMP**, **Photoshop**, o incluso algunos visores de imágenes online.
+
+Aquí tienes un ejemplo de la imagen generada:
+
+![Imagen renderizada](output.png)
+
 ## Generación de Documentación
 El proyecto está documentado utilizando **Doxygen**. Para generar la documentación:
 
