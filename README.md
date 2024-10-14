@@ -60,7 +60,7 @@ Esto generará el archivo ejecutable `main.exe`.
 Para ejecutar el proyecto y generar la imagen renderizada, utiliza el siguiente comando:
 
 ```sh
-./main
+./bin/main
 ```
 Esto creará un archivo llamado `output.ppm` que contiene la imagen generada.
 
