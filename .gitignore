@@ -1,0 +1,12 @@
+# Ignorar binarios y archivos de build
+/build/
+/bin/
+/docs/
+/*.o
+*.exe
+
+# Ignorar archivos temporales y configuraciones
+*.log
+*.tmp
+.vscode/
+output.ppm
