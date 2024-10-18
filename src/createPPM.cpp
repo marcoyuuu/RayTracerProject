@@ -4,6 +4,9 @@
 #include <fstream>     // Para std::ofstream
 #include <vector>      // Para std::vector
 #include <algorithm>   // Para std::clamp
+#include <filesystem>  // Para std::filesystem::create_directories (C++17)
+
+namespace fs = std::filesystem;
 
 /**
  * Aplica corrección gamma a un color dado.
@@ -38,30 +41,28 @@ int clamp(double value) {
  * @param height: Alto de la imagen.
  */
 void createPPM(const std::vector<Vector3D>& framebuffer, int width, int height) {
-    std::ofstream file("output.ppm");
+    std::cout << "Intentando crear el archivo PPM en la ruta especificada...\n";
+    std::ofstream file("./output/output.ppm");
     
-    // Verificar si el archivo se pudo abrir correctamente.
     if (!file.is_open()) {
         std::cerr << "Error: No se pudo abrir el archivo para escritura." << std::endl;
         return;
     }
 
-    // Escribir la cabecera del archivo PPM
+    std::cout << "Archivo PPM creado correctamente. Escribiendo datos...\n";
+
     file << "P3\n" << width << " " << height << "\n255\n";
 
-    // Recorrer cada píxel del framebuffer
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
-            // Aplicar corrección gamma al color del píxel actual
             Vector3D color = applyGammaCorrection(framebuffer[i * width + j]);
-
-            // Limitar los valores del color y escribirlos en el archivo
             file << clamp(color.getX()) << " "
                  << clamp(color.getY()) << " "
                  << clamp(color.getZ()) << " ";
         }
-        file << "\n"; // Nueva línea al final de cada fila de píxeles
+        file << "\n";
     }
 
-    file.close(); // Cerrar el archivo una vez completado
+    file.close();
+    std::cout << "Datos escritos correctamente. Archivo cerrado.\n";
 }

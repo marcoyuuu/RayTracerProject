@@ -15,7 +15,7 @@
  * @param reflectivity Coeficiente de reflectividad del material.
  */
 Triangle::Triangle(const Vector3D& a, const Vector3D& b, const Vector3D& c, const Vector3D& color, double specular, double reflectivity)
-    : a(a), b(b), c(c), color(color), specular(specular), reflectivity(reflectivity) {}
+    : a(a), b(b), c(c), specular(specular), color(color), reflectivity(reflectivity) {}
 
 /**
  * @brief Método para comprobar si un rayo intersecta con el triángulo.
